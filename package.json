@@ -12,7 +12,11 @@
     "@cucumber/cucumber": "^13.0.0",
     "@playwright/test": "^1.61.0",
     "@types/node": "^26.0.0",
+    "allure-cucumberjs": "^3.10.2",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
   }
 }

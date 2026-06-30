@@ -4,17 +4,17 @@
     "elements": [
       {
         "description": "",
-        "id": "login-functionality;successful-login-with-valid-credentials",
+        "id": "lead-functionality;verify_search_and_update_of_existing_update_existing_lead_by_last_name_and_company",
         "keyword": "Scenario",
-        "line": 6,
-        "name": "Successful login with valid credentials",
+        "line": 14,
+        "name": "verify_search_and_update_of_existing_update_existing_lead_by_last_name_and_company",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 627967200
+              "duration": 1158142500
             }
           },
           {
@@ -23,129 +23,102 @@
             "line": 4,
             "name": "the user is on the login page",
             "match": {
-              "location": "src\\step-definitions\\login.steps.ts:20"
+              "location": "src\\step-definitions\\login.steps.ts:4"
             },
             "result": {
               "status": "passed",
-              "duration": 627987000
+              "duration": 359099
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 8,
-            "name": "the user enters valid username and password",
+            "line": 5,
+            "name": "the user logs in with valid username and password",
             "match": {
-              "location": "src\\step-definitions\\login.steps.ts:26"
+              "location": "src\\step-definitions\\login.steps.ts:9"
             },
             "result": {
               "status": "passed",
-              "duration": 88058100
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 9,
-            "name": "clicks the login button",
-            "match": {
-              "location": "src\\step-definitions\\login.steps.ts:33"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 609841699
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 10,
-            "name": "the user should be redirected to the home page",
-            "match": {
-              "location": "src\\step-definitions\\login.steps.ts:39"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 694907800
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 289006999
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "login-functionality;unsuccessful-login-with-invalid-credentials",
-        "keyword": "Scenario",
-        "line": 12,
-        "name": "Unsuccessful login with invalid credentials",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 542785399
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 4,
-            "name": "the user is on the login page",
-            "match": {
-              "location": "src\\step-definitions\\login.steps.ts:20"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 587660500
+              "duration": 675524699
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 14,
-            "name": "the user enters invalid username or password",
-            "match": {
-              "location": "src\\step-definitions\\login.steps.ts:45"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 65490200
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
             "line": 15,
-            "name": "clicks the login button",
+            "name": "the user clicks on new lead link it navigates to new lead page",
             "match": {
-              "location": "src\\step-definitions\\login.steps.ts:33"
+              "location": "src\\step-definitions\\lead.steps.ts:7"
             },
             "result": {
               "status": "passed",
-              "duration": 450445700
+              "duration": 449669399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 16,
+            "name": "the user searches for lead with last name <lastname>",
+            "match": {
+              "location": "src\\step-definitions\\lead.steps.ts:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1219156999
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 16,
-            "name": "an error message should be displayed indicating invalid credentials",
+            "line": 17,
+            "name": "the lead should be displayed in the search results",
             "match": {
-              "location": "src\\step-definitions\\login.steps.ts:52"
+              "location": "src\\step-definitions\\lead.steps.ts:31"
             },
             "result": {
               "status": "passed",
-              "duration": 23923499
+              "duration": 724530700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 18,
+            "name": "the user opens the lead details",
+            "match": {
+              "location": "src\\step-definitions\\lead.steps.ts:37"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 354649599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "the user updates the <lastname> and company name to <company>",
+            "match": {
+              "location": "src\\step-definitions\\lead.steps.ts:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 800554000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "the updated lastname and company should be displayed",
+            "match": {
+              "location": "src\\step-definitions\\lead.steps.ts:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1356370100
             }
           },
           {
@@ -153,19 +126,24 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 251649400
+              "duration": 345248400
             }
           }
         ],
-        "tags": [],
+        "tags": [
+          {
+            "name": "@lead",
+            "line": 13
+          }
+        ],
         "type": "scenario"
       }
     ],
-    "id": "login-functionality",
+    "id": "lead-functionality",
     "line": 1,
     "keyword": "Feature",
-    "name": "Login Functionality",
+    "name": "Lead Functionality",
     "tags": [],
-    "uri": "features\\login.feature"
+    "uri": "features\\lead.feature"
   }
 ]
