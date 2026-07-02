@@ -10,7 +10,7 @@ Feature: Lead Functionality
     And enters lastname and company name and clicks on save button
     Then lead gets created successfully
 
-   @lead
+ 
   Scenario: verify_search_and_update_of_existing_update_existing_lead_by_last_name_and_company
     When the user clicks on new lead link it navigates to new lead page
     When the user searches for lead with last name <lastname>
@@ -18,3 +18,10 @@ Feature: Lead Functionality
     When the user opens the lead details
     And the user updates the <lastname> and company name to <company>
     Then the updated lastname and company should be displayed
+
+  @lead
+  Scenario: verify_deletion_of_existing_lead
+    When the user searches for existing lead with last name
+    Then matching leads should be displayed
+    When the user deletes the first matching lead
+    Then the lead should not appear in the search results

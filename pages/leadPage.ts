@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import { getExcelDataByTC } from "../utilities/excelReader";
 
 export class LeadPage {
     page: Page;
@@ -53,21 +54,30 @@ export class LeadPage {
         return await this.page.locator(this.loc_lead_name).isVisible();
 
     }
+
+    async findFirstname(firstname: string) {
+        await this.page.locator('//input[@name="firstname"]').nth(1).fill(firstname);
+    }
+
     async findLastName(lastname: string) {
         await this.page.locator(this.loc_tb_lastname).nth(1).fill(lastname)
     }
 
-    async isLastNameAvailableInSearch(lastname: string): Promise<boolean | null> {
+    async findCompany(company: string) {
+        await this.page.locator('//input[@name="company"]').nth(1).fill(company);
+    }
+
+    async isLastNameAvailableInSearch(fullname: string): Promise<boolean | null> {
         //await this.page.waitForTimeout(2000);
         await this.page.waitForLoadState('networkidle');
         const rows = await this.page.locator('//table[@class="FormBorder"]/tbody/tr').count();
         console.log("Total Rows =", rows);
         for (let i = 5; i <= rows; i++) {
-            const actualLastname = await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]/td[4]`).textContent();
+            const actualfullname = await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]/td[4]`).textContent();
             // console.log(actualLastname);
             // console.log(`Expected: ${lastname}`);
             // console.log(`Actual Row ${i}: ${actualLastname}`);
-            if (actualLastname?.trim() === lastname) {
+            if (actualfullname?.trim() === fullname) {
                 return true;
             }
             break;
@@ -75,15 +85,15 @@ export class LeadPage {
         return false;
     }
 
-    async clickEditLink(lastname: string) {
+    async clickEditLink(fullname: string) {
         await this.page.waitForLoadState('networkidle');
         const rows = await this.page.locator('//table[@class="FormBorder"]/tbody/tr').count();
 
         for (let i = 5; i <= rows; i++) {
-            const actualLastname = await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]/td[4]`).textContent();
-            console.log(`Expected: ${lastname}`);
-            console.log(`Actual Row ${i}: ${actualLastname}`);
-            if (actualLastname?.trim() === lastname) {
+            const actualfullname = await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]/td[4]`).textContent();
+            console.log(`Expected: ${fullname}`);
+            console.log(`Actual Row ${i}: ${actualfullname}`);
+            if (actualfullname?.trim() === fullname) {
                 await this.page.getByRole('link', { name: 'edit' }).click();
             }
             break;
@@ -94,8 +104,23 @@ export class LeadPage {
         await this.page.click(this.loc_btn_search);
     }
 
-    async clickDelete() {
-        await this.page.locator(this.loc_lnk_delete).nth(0).click();
+    async clickDelete(fullname: string) {
+
+        await this.page.waitForLoadState('networkidle');
+        const rows = await this.page.locator('//table[@class="FormBorder"]/tbody/tr').count();
+        console.log("Total Rows =", rows);
+        for (let i = 5; i <= rows; i++) {
+            const actualfullname = await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]/td[4]`).textContent();
+
+            console.log(`Expected: ${fullname}`);
+            console.log(`Actual Row ${i}: ${actualfullname}`);
+            if (actualfullname?.trim() === fullname) {
+                await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]/td[16]/a[text()='del']`).click();
+                break;
+            }
+
+        }
+        console.log("End of clickDelete");
     }
 
     async handleVerifyDialogue(): Promise<string> {
@@ -129,9 +154,16 @@ export class LeadPage {
                 console.log(dialog.message());
                 const message = dialog.message();
                 await dialog.accept();
+                console.log(dialog.defaultValue());
                 resolve(message);
             });
         })
+    }
+
+    async isLeadDeleted(): Promise<boolean | null> {
+        await this.page.waitForLoadState('networkidle');
+        const result = await (this.page.getByRole('cell', { name: 'Showing 0 - 0 of 0', exact: true }).nth(1)).isVisible();
+        return result
     }
 
 }

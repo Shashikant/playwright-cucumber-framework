@@ -4,17 +4,17 @@
     "elements": [
       {
         "description": "",
-        "id": "lead-functionality;verify_search_and_update_of_existing_update_existing_lead_by_last_name_and_company",
+        "id": "lead-functionality;verify_deletion_of_existing_lead",
         "keyword": "Scenario",
-        "line": 14,
-        "name": "verify_search_and_update_of_existing_update_existing_lead_by_last_name_and_company",
+        "line": 23,
+        "name": "verify_deletion_of_existing_lead",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1158142500
+              "duration": 1256517399
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 359099
+              "duration": 417600
             }
           },
           {
@@ -40,85 +40,59 @@
             },
             "result": {
               "status": "passed",
-              "duration": 675524699
+              "duration": 712737400
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 15,
-            "name": "the user clicks on new lead link it navigates to new lead page",
+            "line": 24,
+            "name": "the user searches for existing lead with last name",
             "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:7"
+              "location": "src\\step-definitions\\lead.steps.ts:53"
             },
             "result": {
               "status": "passed",
-              "duration": 449669399
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 16,
-            "name": "the user searches for lead with last name <lastname>",
-            "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:22"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1219156999
+              "duration": 1342845199
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 17,
-            "name": "the lead should be displayed in the search results",
+            "line": 25,
+            "name": "matching leads should be displayed",
             "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:31"
+              "location": "src\\step-definitions\\lead.steps.ts:60"
             },
             "result": {
               "status": "passed",
-              "duration": 724530700
+              "duration": 779937300
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 18,
-            "name": "the user opens the lead details",
+            "line": 26,
+            "name": "the user deletes the first matching lead",
             "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:37"
+              "location": "src\\step-definitions\\lead.steps.ts:66"
             },
             "result": {
               "status": "passed",
-              "duration": 354649599
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 19,
-            "name": "the user updates the <lastname> and company name to <company>",
-            "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:42"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 800554000
+              "duration": 545959000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 20,
-            "name": "the updated lastname and company should be displayed",
+            "line": 27,
+            "name": "the lead should not appear in the search results",
             "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:48"
+              "location": "src\\step-definitions\\lead.steps.ts:75"
             },
             "result": {
               "status": "passed",
-              "duration": 1356370100
+              "duration": 1661610000
             }
           },
           {
@@ -126,14 +100,14 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 345248400
+              "duration": 418579499
             }
           }
         ],
         "tags": [
           {
             "name": "@lead",
-            "line": 13
+            "line": 22
           }
         ],
         "type": "scenario"
