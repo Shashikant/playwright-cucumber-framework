@@ -4,95 +4,69 @@
     "elements": [
       {
         "description": "",
-        "id": "lead-functionality;verify_deletion_of_existing_lead",
+        "id": "api-functionality;generate-token-and-check-api-response",
         "keyword": "Scenario",
-        "line": 23,
-        "name": "verify_deletion_of_existing_lead",
+        "line": 3,
+        "name": "Generate Token and check API Response",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1256517399
+              "duration": 3182375100
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
             "line": 4,
-            "name": "the user is on the login page",
+            "name": "I have the API endpoint \"https://restful-booker.herokuapp.com/auth\"",
             "match": {
-              "location": "src\\step-definitions\\login.steps.ts:4"
+              "location": "src\\step-definitions\\api.steps.ts:7"
             },
             "result": {
               "status": "passed",
-              "duration": 417600
+              "duration": 5430499
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 5,
-            "name": "the user logs in with valid username and password",
+            "name": "I send a POST request to the endpoint",
             "match": {
-              "location": "src\\step-definitions\\login.steps.ts:9"
+              "location": "src\\step-definitions\\api.steps.ts:13"
             },
             "result": {
               "status": "passed",
-              "duration": 712737400
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 24,
-            "name": "the user searches for existing lead with last name",
-            "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:53"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1342845199
+              "duration": 1296887600
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 25,
-            "name": "matching leads should be displayed",
+            "line": 6,
+            "name": "the response status code should be 200",
             "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:60"
+              "location": "src\\step-definitions\\api.steps.ts:32"
             },
             "result": {
               "status": "passed",
-              "duration": 779937300
+              "duration": 11468900
             }
           },
           {
             "arguments": [],
-            "keyword": "When ",
-            "line": 26,
-            "name": "the user deletes the first matching lead",
+            "keyword": "And ",
+            "line": 7,
+            "name": "the response body should contain the expected data",
             "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:66"
+              "location": "src\\step-definitions\\api.steps.ts:36"
             },
             "result": {
               "status": "passed",
-              "duration": 545959000
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 27,
-            "name": "the lead should not appear in the search results",
-            "match": {
-              "location": "src\\step-definitions\\lead.steps.ts:75"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1661610000
+              "duration": 3551499
             }
           },
           {
@@ -100,24 +74,95 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 418579499
+              "duration": 344563899
             }
           }
         ],
         "tags": [
           {
-            "name": "@lead",
-            "line": 22
+            "name": "@api",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "api-functionality;verify-updating-booking-with-token",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Verify updating booking with token",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3046524800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 10,
+            "name": "I have the API endpoint \"https://restful-booker.herokuapp.com/booking/1\"",
+            "match": {
+              "location": "src\\step-definitions\\api.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3772799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I send a PUT request to the endpoint with the token",
+            "match": {
+              "location": "src\\step-definitions\\api.steps.ts:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 268255199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status code should be 200",
+            "match": {
+              "location": "src\\step-definitions\\api.steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1907299
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 283331899
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 8
           }
         ],
         "type": "scenario"
       }
     ],
-    "id": "lead-functionality",
+    "id": "api-functionality",
     "line": 1,
     "keyword": "Feature",
-    "name": "Lead Functionality",
+    "name": "API Functionality",
     "tags": [],
-    "uri": "features\\lead.feature"
+    "uri": "features\\api.feature"
   }
 ]

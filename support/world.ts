@@ -1,4 +1,4 @@
-import { Browser, chromium, expect, Page } from '@playwright/test';
+import { Browser, chromium, expect, Page, APIRequestContext, APIResponse } from '@playwright/test';
 import { BrowserManager } from '../utilities/browserManager';
 import { LoginPage } from '../pages/loginPage';
 import { HomePage } from '../pages/homePage';
@@ -18,6 +18,10 @@ let leadPage: LeadPage;
 let TCName: string;
 let data: any;
 
+let response: APIResponse;
+let url: string;
+let apiContext: APIRequestContext;
+let token: string;
 
 BeforeAll(async function () {
     loadExcel('src/testdata/data.xlsx', 'data');
@@ -62,5 +66,6 @@ After(async function ({ result }) {
     await this.page.close();
     await this.context.close();
     await this.browser.close();
+    
 
 });
