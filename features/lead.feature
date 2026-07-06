@@ -4,7 +4,7 @@ Feature: Lead Functionality
     Given the user is on the login page
     When the user logs in with valid username and password
 
- 
+  @lead
   Scenario: verify_create_lead_with_mandatory_fields_TC04
     When the user clicks on new lead link it navigates to new lead page
     And enters lastname and company name and clicks on save button

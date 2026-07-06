@@ -24,24 +24,32 @@ let apiContext: APIRequestContext;
 let token: string;
 
 BeforeAll(async function () {
-    loadExcel('src/testdata/data.xlsx', 'data');
+    loadExcel('src/testdata/data.xlsx');
 
 });
 
 Before(async function (scenario) {
-
     this.TCName = scenario.pickle.name;
+    const tags = scenario.pickle.tags.map(t => t.name);
+    if (tags.includes("@auth")) {
+        this.sheetName = "Auth";
+    }
+    else if (tags.includes("@bookingapi")) {
+        this.sheetName = "Booking";
+    }
+    else if (tags.includes("@lead")) {
+        this.sheetName = "UI";
+    }
+
     try {
-        this.data = await getExcelDataByTC(this.TCName);
+        this.data = await getExcelDataByTC(this.TCName, this.sheetName);
     } catch (e) {
         console.error(e);
     }
 
     console.log("Scenario Name:", scenario.pickle.name);
-    //  this.browser = await chromium.launch({
-    //      channel: 'chrome', // Launch Google Chrome
-    //      headless: false
-    // });
+    console.log("Scenario Tags:", tags);
+
     this.browser = await BrowserManager.getBrowser();
 
     this.context = await this.browser.newContext();
@@ -66,6 +74,5 @@ After(async function ({ result }) {
     await this.page.close();
     await this.context.close();
     await this.browser.close();
-    
 
 });
